@@ -7,12 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 /**
- * Contrôleur pour la page d'accueil.
+ * Contrôleur pour la page d'accueil de l'application.
+ * Présente les fonctionnalités principales aux utilisateurs.
  */
 final class AccueilController extends AbstractController
 {
     /**
-     * Affiche la page d'accueil du site.
+     * Affiche la landing page (page de présentation) de l'application.
      */
     #[Route('/accueil', name: 'app_accueil')]
     public function index(): Response
