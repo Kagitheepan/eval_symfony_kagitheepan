@@ -31,6 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-link {{ app.request.get('_route') == 'app_accueil' ? 'active' : '' }}" href="{{ path('app_accueil') }}">Home</a>
+                <a class="nav-link {{ app.request.get('_route') == 'app_product' ? 'active' : '' }}" href="{{ path('app_product') }}">Produits</a>
                 <a class="nav-link {{ app.request.get('_route') == 'app_contact' ? 'active' : '' }}" href="{{ path('app_contact') }}">Contact</a>
                 <a class="nav-link {{ app.request.get('_route') == 'app_pricing' ? 'active' : '' }}" href="{{ path('app_pricing') }}">Pricing</a>
 

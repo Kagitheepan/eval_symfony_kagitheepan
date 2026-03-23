@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Produit{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white py-3">
+                    <h2 class="h4 mb-0 fw-bold"><i class="fas fa-plus-circle me-2"></i>Nouveau Produit</h2>
+                </div>
+                <div class="card-body p-4">
+                    {{ include('admin/product/_form.html.twig', {'button_label': 'Enregistrer le produit'}) }}
+                    
+                    <div class="mt-4 pt-3 border-top">
+                        <a href="{{ path('app_product') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Retour à la liste
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

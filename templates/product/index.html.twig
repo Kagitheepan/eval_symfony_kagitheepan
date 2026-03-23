@@ -8,13 +8,43 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold">Nos Produits</h1>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin_product_new') }}" class="btn btn-primary shadow-sm">
+                <i class="fas fa-plus-circle me-2"></i>Ajouter un produit (Admin)
+            </a>
+        {% endif %}
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/steef/OneDrive/Desktop/test_eval/eval_symfony_kagitheepan/src/Controller/ProductController.php</code></li>
-        <li>Your template at <code>C:/Users/steef/OneDrive/Desktop/test_eval/eval_symfony_kagitheepan/templates/product/index.html.twig</code></li>
-    </ul>
-</div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="fas fa-check-circle me-2"></i>{{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+    <div class="row g-4 mt-2">
+        {% for product in products %}
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 transition-hover">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-dark">{{ product.name }}</h5>
+                        <p class="card-text text-secondary">{{ product.description|slice(0, 100) ~ (product.description|length > 100 ? '...' : '') }}</p>
+                    </div>
+                    <div class="card-footer bg-light border-0 d-flex justify-content-between align-items-center py-3">
+                        <span class="fs-4 fw-bold text-primary">{{ product.price|number_format(2, ',', ' ') }} €</span>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill px-3">Détails</button>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <div class="text-center py-5 bg-white rounded shadow-sm">
+                    <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                    <p class="text-muted fs-5">Aucun produit n'est disponible pour le moment.</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
