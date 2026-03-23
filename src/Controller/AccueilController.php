@@ -15,7 +15,7 @@ final class AccueilController extends AbstractController
     /**
      * Affiche la landing page (page de présentation) de l'application.
      */
-    #[Route('/accueil', name: 'app_accueil')]
+    #[Route('/', name: 'app_accueil')]
     public function index(): Response
     {
         return $this->render('accueil/index.html.twig', [
