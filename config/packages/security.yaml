@@ -37,9 +37,11 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
-    # Note: Only the *first* matching rule is applied
+    # Contrôle d'accès : définit qui peut accéder à quelles parties du site.
     access_control:
+        # Les routes commençant par /admin nécessitent le rôle ROLE_ADMIN.
         - { path: ^/admin, roles: ROLE_ADMIN }
+        # Les routes commençant par /account nécessitent d'être connecté (ROLE_USER).
         - { path: ^/account, roles: ROLE_USER }
 
 when@test:

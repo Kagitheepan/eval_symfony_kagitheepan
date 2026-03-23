@@ -7,8 +7,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Formulaire pour la création et l'édition de produits.
+ */
 class ProductType extends AbstractType
 {
+    /**
+     * Construit le formulaire avec les champs nécessaires.
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

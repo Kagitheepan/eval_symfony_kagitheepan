@@ -16,6 +16,10 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\SecurityRequestAttributes;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
+/**
+ * Authentificateur personnalisé pour le formulaire de connexion.
+ * Gère la vérification des identifiants (email/password) et la redirection après succès.
+ */
 class LoginFormAuthAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;

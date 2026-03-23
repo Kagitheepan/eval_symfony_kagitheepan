@@ -6,14 +6,23 @@ use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Représente un produit dans le catalogue.
+ */
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
+    /**
+     * @var int|null L'identifiant unique du produit.
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    /**
+     * @var string|null Le nom du produit.
+     */
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 

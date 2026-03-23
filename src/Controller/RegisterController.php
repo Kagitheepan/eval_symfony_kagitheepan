@@ -11,8 +11,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
+/**
+ * Contrôleur gérant l'inscription des nouveaux utilisateurs.
+ */
 final class RegisterController extends AbstractController
 {
+    /**
+     * Affiche le formulaire d'inscription et traite la création de l'utilisateur.
+     * 
+     * @param Request $request La requête HTTP.
+     * @param EntityManagerInterface $doctrine Le gestionnaire d'entités de Doctrine.
+     * @param UserPasswordHasherInterface $passwordHasher Le service pour hasher les mots de passe.
+     * @return Response La vue du formulaire d'inscription ou une redirection après succès.
+     */
     #[Route('/inscription', name: 'app_register')]
     public function index(Request $request, EntityManagerInterface $doctrine, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -22,7 +33,7 @@ final class RegisterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Hash the password
+            // Hachage du mot de passe avant enregistrement
             $hashedPassword = $passwordHasher->hashPassword(
                 $user,
                 $user->getPassword()
