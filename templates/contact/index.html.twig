@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez-nous{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row mb-5 text-center">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 fw-bold mb-3">Contactez-nous</h1>
+            <p class="lead text-muted">Une question ? Un projet ? N'hésitez pas à nous envoyer un message via le formulaire ci-dessous.</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-lg overflow-hidden" style="border-radius: 20px;">
+                <div class="row g-0">
+                    <!-- Contact Info Sidebar -->
+                    <div class="col-md-4 bg-primary text-white p-5 d-flex flex-column justify-content-center">
+                        <h3 class="fw-bold mb-4">Informations</h3>
+                        <p class="mb-4 text-white-50">Notre équipe est disponible pour répondre à toutes vos interrogations.</p>
+                        
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-phone-alt me-3 fs-5"></i>
+                            <span>+33 1 23 45 67 89</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-envelope me-3 fs-5"></i>
+                            <span>contact@monsite.com</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-map-marker-alt me-3 fs-5"></i>
+                            <span>75000 Paris, France</span>
+                        </div>
+
+                        <div class="mt-5 pt-5 d-flex gap-3">
+                            <a href="#" class="text-white text-decoration-none fs-5"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-white text-decoration-none fs-5"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-white text-decoration-none fs-5"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="col-md-8 p-5 bg-white">
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success border-0 shadow-sm mb-4 rounded-3 d-flex align-items-center">
+                                <i class="fas fa-check-circle me-3 fs-4"></i>
+                                <div>{{ message }}</div>
+                            </div>
+                        {% endfor %}
+
+                        {{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-1">
+                                        {{ form_widget(form.fullname, {'attr': {'class': 'form-control rounded-3'}}) }}
+                                        {{ form_label(form.fullname) }}
+                                    </div>
+                                    <div class="text-danger small">{{ form_errors(form.fullname) }}</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-1">
+                                        {{ form_widget(form.email, {'attr': {'class': 'form-control rounded-3'}}) }}
+                                        {{ form_label(form.email) }}
+                                    </div>
+                                    <div class="text-danger small">{{ form_errors(form.email) }}</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating mb-1">
+                                        {{ form_widget(form.subject, {'attr': {'class': 'form-control rounded-3'}}) }}
+                                        {{ form_label(form.subject) }}
+                                    </div>
+                                    <div class="text-danger small">{{ form_errors(form.subject) }}</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        {{ form_widget(form.content, {'attr': {'class': 'form-control rounded-3', 'style': 'height: 150px'}}) }}
+                                        {{ form_label(form.content) }}
+                                    </div>
+                                    <div class="text-danger small">{{ form_errors(form.content) }}</div>
+                                </div>
+                                <div class="col-12">
+                                    {{ form_widget(form.submit) }}
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-floating > label { padding-left: 1rem; color: #6c757d; }
+    .form-control:focus { border-color: #0d6efd; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1); }
+    .bg-primary { background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%) !important; }
+</style>
+{% endblock %}
