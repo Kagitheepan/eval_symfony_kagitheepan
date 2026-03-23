@@ -31,6 +31,17 @@ class RegisterType extends AbstractType
                 'label' => 'Mot de passe',
                 'attr' => ['placeholder' => 'Saisissez votre mot de passe']
             ])
+            ->add('role_selection', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, [
+                'label' => 'Je suis un...',
+                'choices' => [
+                    'Acheteur' => 'buyer',
+                    'Vendeur' => 'seller',
+                ],
+                'expanded' => true, // Radio buttons
+                'multiple' => false,
+                'mapped' => false, // Virtual field
+                'data' => 'buyer', // Default value
+            ])
         ;
     }
 

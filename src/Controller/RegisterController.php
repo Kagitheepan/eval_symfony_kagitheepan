@@ -39,6 +39,14 @@ final class RegisterController extends AbstractController
                 $user->getPassword()
             );
             $user->setPassword($hashedPassword);
+
+            // Gestion du rôle selon la sélection
+            $roleSelection = $form->get('role_selection')->getData();
+            if ($roleSelection === 'seller') {
+                $user->setRoles(['ROLE_ADMIN']);
+            } else {
+                $user->setRoles(['ROLE_USER']);
+            }
             
             $doctrine->persist($user);
             $doctrine->flush();
